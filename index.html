@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sony, Will you be my Valentine? 💘</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        .container {
+            background: white;
+            padding: 60px 40px;
+            border-radius: 30px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            max-width: 600px;
+            width: 100%;
+            position: relative;
+            z-index: 10;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            color: #e74c3c;
+            margin-bottom: 20px;
+            animation: heartbeat 1.5s ease-in-out infinite;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .subtitle {
+            font-size: 1em;
+            color: #7f8c8d;
+            margin-bottom: 10px;
+            font-style: italic;
+        }
+
+        .question {
+            font-size: 1.8em;
+            color: #333;
+            margin-bottom: 40px;
+            font-weight: 600;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        button {
+            padding: 15px 40px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        #yesBtn {
+            background: #e74c3c;
+            color: white;
+        }
+
+        #yesBtn:hover {
+            background: #c0392b;
+            transform: scale(1.1);
+        }
+
+        #noBtn {
+            background: #95a5a6;
+            color: white;
+            position: relative;
+        }
+
+        #noBtn:hover {
+            background: #7f8c8d;
+        }
+
+        .response {
+            display: none;
+            margin-top: 30px;
+        }
+
+        .response.show {
+            display: block;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hearts {
+            font-size: 3em;
+            margin: 20px 0;
+        }
+
+        .celebration {
+            font-size: 1.5em;
+            color: #e74c3c;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        /* Slideshow container */
+        .slideshow-container {
+            position: relative;
+            margin: 30px auto;
+            max-width: 500px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            background: #f0f0f0;
+        }
+
+        .slide {
+            display: none;
+            width: 100%;
+        }
+
+        .slide.active {
+            display: block;
+            animation: slideIn 0.5s ease-in-out;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .slide img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 15px;
+        }
+
+        .slide-counter {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            z-index: 10;
+        }
+
+        /* Video container */
+        .video-section {
+            margin-top: 30px;
+            padding: 20px;
+            background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%);
+            border-radius: 20px;
+        }
+
+        .video-section h3 {
+            color: #2d3436;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+
+        video {
+            width: 100%;
+            max-width: 500px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Ribbon animation */
+        .ribbon {
+            position: fixed;
+            top: -50px;
+            width: 20px;
+            height: 100px;
+            background: linear-gradient(to bottom, #ff6b6b, #ee5a6f);
+            animation: fall linear infinite;
+            opacity: 0.8;
+            z-index: 1;
+        }
+
+        .ribbon:nth-child(2n) {
+            background: linear-gradient(to bottom, #4ecdc4, #44a6a0);
+        }
+
+        .ribbon:nth-child(3n) {
+            background: linear-gradient(to bottom, #95e1d3, #7dd3c0);
+        }
+
+        .ribbon:nth-child(4n) {
+            background: linear-gradient(to bottom, #f38181, #d66d6d);
+        }
+
+        .ribbon:nth-child(5n) {
+            background: linear-gradient(to bottom, #ffd93d, #f5c500);
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+            }
+        }
+
+        .emoji-float {
+            position: fixed;
+            font-size: 2em;
+            animation: float 3s ease-in-out infinite;
+            z-index: 1;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(10deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating emojis -->
+    <div class="emoji-float" style="top: 10%; left: 5%;">💕</div>
+    <div class="emoji-float" style="top: 20%; right: 8%; animation-delay: 1s;">💝</div>
+    <div class="emoji-float" style="top: 70%; left: 10%; animation-delay: 2s;">💖</div>
+    <div class="emoji-float" style="top: 60%; right: 5%; animation-delay: 1.5s;">💗</div>
+    <div class="emoji-float" style="top: 40%; left: 3%; animation-delay: 0.5s;">✨</div>
+    <div class="emoji-float" style="top: 80%; right: 12%; animation-delay: 2.5s;">🌹</div>
+
+    <div class="container">
+        <h1>💘</h1>
+        <p class="subtitle">Gokul Aakash is feeling... nervous 😊</p>
+        <p class="question">Sony, will you be my Valentine? 🌹</p>
+        
+        <div class="buttons" id="buttonContainer">
+            <button id="yesBtn">Yes! 💕</button>
+            <button id="noBtn">No</button>
+        </div>
+
+        <div class="response" id="yesResponse">
+            <div class="hearts">💖 💝 💗 💓 💕</div>
+            <p class="celebration">Yay! Sony said YES! 🎉✨</p>
+            <p style="margin-top: 15px; font-size: 1.2em; color: #555;">Gokul Aakash is the happiest person alive! 😊🥰</p>
+            
+            <!-- Photo Slideshow -->
+            <div class="slideshow-container">
+                <div class="slide active">
+                    <img src="image1.jpg" alt="Our Memory 1">
+                </div>
+                <div class="slide">
+                    <img src="image2.jpg" alt="Our Memory 2">
+                </div>
+                <div class="slide">
+                    <img src="image3.jpg" alt="Our Memory 3">
+                </div>
+                <div class="slide">
+                    <img src="image4.jpg" alt="Our Memory 4">
+                </div>
+                <div class="slide">
+                    <img src="image5.jpg" alt="Our Memory 5">
+                </div>
+                <div class="slide">
+                    <img src="image6.jpg" alt="Our Memory 6">
+                </div>
+                <div class="slide-counter"><span id="currentSlide">1</span> / 6</div>
+            </div>
+
+            <!-- Video Section -->
+            <div class="video-section">
+                <h3>💕 Our Special Moment 💕</h3>
+                <video controls loop autoplay playsinline>
+                    <source src="celebration-video.mov" type="video/quicktime">
+                    <source src="celebration-video.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+
+            <p style="margin-top: 20px; font-size: 1em; color: #e74c3c;">💑 Best Valentine's Day Ever! 💑</p>
+        </div>
+
+        <div class="response" id="noResponse">
+            <p style="font-size: 1.3em; color: #e74c3c;">Are you sure, Sony? 🥺</p>
+        </div>
+    </div>
+
+    <script>
+        const yesBtn = document.getElementById('yesBtn');
+        const noBtn = document.getElementById('noBtn');
+        const buttonContainer = document.getElementById('buttonContainer');
+        const yesResponse = document.getElementById('yesResponse');
+        const noResponse = document.getElementById('noResponse');
+        const question = document.querySelector('.question');
+        const subtitle = document.querySelector('.subtitle');
+
+        let noClickCount = 0;
+        let slideIndex = 0;
+        let slideInterval;
+
+        yesBtn.addEventListener('click', function() {
+            buttonContainer.style.display = 'none';
+            question.style.display = 'none';
+            subtitle.style.display = 'none';
+            yesResponse.classList.add('show');
+            
+            // Change background
+            document.body.style.background = 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)';
+            
+            // Create falling ribbons
+            createRibbons();
+            
+            // Start slideshow
+            startSlideshow();
+        });
+
+        const questions = [
+            'Sony, will you be my Valentine? 🌹',
+            'Please, Sony? 🥺',
+            'Really sure, Sony? 💔',
+            'But... why not, Sony? 😢',
+            'Sony, please reconsider? 🙏',
+            'What if I ask nicely, Sony? 🥹',
+            'Come on, Sony... just say yes! 💕',
+            'Sony, the Yes button is getting lonely! 😔',
+            'One more chance, Sony? Pretty please? 🌹',
+            'Sony, I promise to be the best Valentine! 💖'
+        ];
+
+        const subtitles = [
+            'Gokul Aakash is feeling... nervous 😊',
+            'Gokul Aakash is feeling... hopeful 🤞',
+            'Gokul Aakash is feeling... sad 😢',
+            'Gokul Aakash is feeling... heartbroken 💔',
+            'Gokul Aakash is feeling... desperate 🥺',
+            'Gokul Aakash is feeling... really desperate 😭',
+            'Gokul Aakash is feeling... very very desperate 🙏',
+            'Gokul Aakash is feeling... about to cry 😰',
+            'Gokul Aakash is feeling... almost giving up 😔',
+            'Gokul Aakash is feeling... one last hope 🌟'
+        ];
+
+        noBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            noClickCount++;
+            
+            if (noClickCount < questions.length) {
+                question.textContent = questions[noClickCount];
+                subtitle.textContent = subtitles[noClickCount];
+            }
+            
+            const currentSize = parseFloat(window.getComputedStyle(yesBtn).fontSize);
+            yesBtn.style.fontSize = (currentSize + 3) + 'px';
+            yesBtn.style.padding = (15 + noClickCount * 2) + 'px ' + (40 + noClickCount * 3) + 'px';
+            
+            if (noClickCount === 1) {
+                noResponse.innerHTML = '<p style="font-size: 1.3em; color: #e74c3c;">Are you sure, Sony? 🥺</p>';
+                noResponse.classList.add('show');
+                setTimeout(() => {
+                    noResponse.classList.remove('show');
+                }, 2000);
+            } else if (noClickCount === 2) {
+                noBtn.style.fontSize = '1em';
+                noBtn.style.padding = '12px 30px';
+            } else if (noClickCount === 3) {
+                noBtn.style.fontSize = '0.9em';
+                noBtn.style.padding = '10px 25px';
+                noBtn.style.position = 'fixed';
+                noBtn.style.transition = 'all 0.3s ease';
+                moveNoButton();
+            } else if (noClickCount === 5) {
+                noBtn.style.fontSize = '0.7em';
+                noBtn.style.padding = '8px 20px';
+                moveNoButton();
+            } else if (noClickCount === 7) {
+                noBtn.style.fontSize = '0.5em';
+                noBtn.style.padding = '5px 15px';
+                noBtn.style.opacity = '0.7';
+                moveNoButton();
+            } else if (noClickCount === 10) {
+                noBtn.textContent = 'Fine... Yes 💕';
+                noBtn.style.background = '#e74c3c';
+                noBtn.style.fontSize = '1.2em';
+                noBtn.style.padding = '15px 40px';
+                noBtn.style.opacity = '1';
+                noBtn.onclick = function() {
+                    yesBtn.click();
+                };
+            } else if (noClickCount >= 3) {
+                moveNoButton();
+            }
+        });
+
+        function moveNoButton() {
+            const maxX = window.innerWidth - noBtn.offsetWidth - 20;
+            const maxY = window.innerHeight - noBtn.offsetHeight - 20;
+            const x = Math.random() * maxX;
+            const y = Math.random() * maxY;
+            noBtn.style.left = Math.max(0, x) + 'px';
+            noBtn.style.top = Math.max(0, y) + 'px';
+        }
+
+        noBtn.addEventListener('mouseenter', function() {
+            if (noClickCount >= 3 && noClickCount < 10) {
+                moveNoButton();
+            }
+        });
+
+        function createRibbons() {
+            const ribbonCount = 50;
+            for (let i = 0; i < ribbonCount; i++) {
+                setTimeout(() => {
+                    const ribbon = document.createElement('div');
+                    ribbon.className = 'ribbon';
+                    ribbon.style.left = Math.random() * 100 + '%';
+                    ribbon.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                    ribbon.style.animationDelay = Math.random() * 2 + 's';
+                    document.body.appendChild(ribbon);
+                    
+                    setTimeout(() => {
+                        ribbon.remove();
+                    }, 8000);
+                }, i * 100);
+            }
+        }
+
+        function startSlideshow() {
+            const slides = document.querySelectorAll('.slide');
+            const counter = document.getElementById('currentSlide');
+            
+            slideInterval = setInterval(() => {
+                slides[slideIndex].classList.remove('active');
+                slideIndex = (slideIndex + 1) % slides.length;
+                slides[slideIndex].classList.add('active');
+                counter.textContent = slideIndex + 1;
+            }, 3000); // Change photo every 3 seconds
+        }
+    </script>
+</body>
+</html>
